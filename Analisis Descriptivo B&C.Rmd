@@ -1,0 +1,139 @@
+---
+title: "Análisis descriptivo inmobiliaria B&C"
+author: "Germán Alberto Mejía Salgado"
+date: "`r Sys.Date()`"
+output: html_document
+---
+## Introducción ##
+Estimados directivos de B&C, espero que se encuentren muy bien. Gracias por proporcionar su base de datos, esta ha sido analizada y utilizada para presentar los resultados de este documento. Esperamos que con esta información puedan definir su nicho de mercado, desarrollar estrategias de marketing, establecer precios de venta y ofrecer servicios personalizados a sus clientes. Estaré atento a cualquier requerimiento o análisis adicional que necesiten.
+
+
+
+## Objetivo ##
+El objetivo de este análisis es realizar un estudio descriptivo de la base de datos "vivienda_faltantes" para identificar las tendencias y patrones de los inmuebles de la empresa B&C.
+
+## Métodos ##
+Los documentos imágenes  y el código de R utilizado se pueden encontrar en: https://github.com/germanmejia0/TrabajoU1metodos.git
+Inicialmente, se descargó la base de datos y se añadió a la librería. Luego, se incluyeron algunos paquetes necesarios para el análisis y visualización de datos, como RColorBrewer, ggplot2, dplyr, knitr, kableExtra, entre otros.
+Se realizó una vista general de la base de datos para identificar las variables y se categorizaron de la siguiente manera:
+
+
+- Id: Variable de identificación, no se utilizó en el análisis.
+- Zona: Variable cualitativa nominal.
+- Piso: Variable cuantitativa discreta.
+- Estrato: Variable cualitativa ordinal.
+- Precio (millones): Variable cuantitativa continua.
+- Área construida: Variable cuantitativa continua.
+- Baños: Variable cuantitativa discreta.
+- Habitación: Variable cuantitativa discreta.
+- Tipo: Variable cualitativa nominal.
+- Barrio: Variable de identificación, no se utilizó en el análisis.
+- Longitud: Variable cuantitativa continua.
+- Latitud: Variable cuantitativa continua.
+
+Se limpiaron algunos datos, como:
+
+-	considerar un valor de 0 en las variables continuas donde no existía un dato
+
+-	Corregir la varibale "Tipo" en la cual se encontraban múltiples formas para describir si un inmueble era  casa o apartamento.
+
+-	También se crearon intervalos para comparaciones en la variable "Número de parqueaderos".
+
+Se aplicó el teorema del límite central y, al tener más de 30 registros en la base de datos, se describieron la mayoría de las tablas con la media y la desviación estándar. Las gráficas utilizadas incluyeron diagramas de pastel o circulares, diagramas de barras, diagramas de cajas, gráficas de líneas, entre otros.
+
+
+
+## Resultados ##
+
+En general, la mayoría de los inmuebles se encontraron en la zona sur (56.8%), seguido de la zona norte (23.1%) y la zona oeste (14.5%). La zona centro fue la de menor proporción de inmuebles, con tan solo un 1.5%. La Figura 1 muestra la distribución de los inmuebles por zona.
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Distribución de inmuebles de acuerdo a la zona.png">
+Figura 1
+
+Respecto al tipo de inmueble, los apartamentos fueron el tipo más común (61.3%), mientras que las casas conformaron el 38.7% restante (Figura 2).
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Distribución del tipo de inmueble.png">
+Figura 2
+
+De todos los inmuebles, la mayoría de ellos fueron de estrato 5 (2751), seguido de estrato 4 (2131) y estrato 6 (1992). El estrato 3 fue el que tuvo menos número de inmuebles con 1992 (Figura 3).
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Distribución de viviendas de acuerdo al estrato.png">
+Figura 3
+
+En cuanto a los precios de las viviendas, el promedio fue de 434.25 millones (DE 329); aunque el rango fue amplio, siendo la vivienda más barata de 58 millones y la más cara de 1999 millones. El 50% de las viviendas se ubicaron entre 220 y 540 millones, como lo muestra la Figura 4.
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Media, mediana y cuartiles del precio en millones.png">
+Figura 4
+
+
+Se buscaron algunas relaciones con el precio de las viviendas encontrando:
+
+- Una relación positiva con el área construida (Figura 5).
+- En general, un inmueble con más de cuatro habitaciones tenía un precio considerablemente mayor que los de menos de cuatro. Sin embargo, no tuvo una relación directa, ya que, por ejemplo, los inmuebles de cinco habitaciones costaban más que los de ocho o nueve (Figura 6).
+- Inmuebles con un mayor número de parqueaderos (siete o más) también tenían un mayor precio (Figura 7).
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Relación entre área construida y precio.png">
+Figura 5
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Relación entre número de habitaciones y precio.png">
+Figura 6
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Relación entre número de parqueaderos y precio.png">
+Figura 7
+
+**Características de los inmuebles de acuerdo a la zona:**
+
+La zona oeste fue la zona con un precio mayor en comparación con las otras (679 millones, DE 392); a su vez, esta fue la zona con mayor número de parqueaderos (2.2) y curiosamente, la menor cantidad de habitaciones (3.3). Por su parte, la zona oriente fue la zona donde se ubicaron los inmuebles con menor precio (229 millones, DE 122) que, a su vez, fueron los inmuebles con el mayor número de habitaciones (4.9, DE 2.3) y la tercera zona con mayor área construida (192 m, DE 157 m) Para más información diríjase a la tabla 1.
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Tabla zonas-1.png">
+Tabla 1
+
+**Características de los inmuebles de acuerdo al tipo:**
+
+Comparando el área construida, los inmuebles tipo casa tuvieron una mayor extensión (273 m) en comparación con los apartamentos (112 m). También fueron el tipo de inmueble con mayor precio (539 millones vs. 367 millones para los apartamentos). En cuanto al número de parqueaderos, baños y habitaciones, en promedio, las casas tuvieron un mayor número de ellos. Consulte la siguiente tabla para obtener más información (Ver tabla 2).
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Tabla Tipo-1.png">
+Tabla 2
+
+**Características de los inmuebles de acuerdo al estrato:**
+
+El precio de las viviendas aumentó a medida que aumentaba el estrato, variando de 210.3 millones para el estrato 3 hasta 800 millones en el estrato 6. En cuanto al área construida, el estrato 6 constituyó las viviendas con mayor extensión (248 m), mientras que los inmuebles de estrato 4 fueron los de menor área con 131.2 m en promedio. Los inmuebles de estrato 6 a su vez fueron los de mayor número de parqueaderos y baños; información más detallada en la tabla 3.
+
+<img src="/Users/germanalbertomejiasalgado/Desktop/MAESTRIA/1S/MÉTODOS Y SIMULACIÓN ESTADÍSTICA/TRABAJOS/Trabajo unidad 1/Tabla estratos-1.png">
+Tabla 3
+
+
+
+## Discusión ##
+
+Este proyecto analiza los tipos de inmuebles de la compañía inmobiliaria B&C en la ciudad de Cali, Colombia. De manera general, encontramos que la mayoría de inmuebles de esta compañía se encuentran en la zona sur, con solo un 1.5% en la zona norte. Este dato es positivo, dado que según el periódico “El País”  la zona sur de la ciudad se proyecta con mayor crecimiento, debido a proyectos urbanísticos en desarrollo, comercio, oferta educativa y obras viales para mejorar la infraestructura y el comercio. [1]
+
+Diferentes periódicos han reportado que la mayoría de colombianos, incluyendo los caleños aunque viven en apartamentos  prefieren vivir en casas. [2] Por lo tanto, aunque no está mal tener una mayor proporción de apartamentos (ya que debido al perfil inmobiliario este es el tipo de inmueble más vendido) se sugiere  en un futuro invertir más en inmuebles tipo casa o adaptar los apartamentos con algunas características que buscan los clientes en las casas, como un mayor número de habitaciones, baño o parqueaderos.
+
+Con respecto al tipo de estrato, encontramos que la mayoría de inmuebles pertenecen a los estratos cinco y cuatro, y en último lugar se encuentra el estrato tres. Dado que la mayor parte de la población se ubica en estratos más bajos;  [3] sugerimos que en el futuro se proyecten a invertir en inmuebles de estrato tres o menos, lo cual puede beneficiarles con mayores ganancias para la inmobiliaria.
+
+En cuanto al precio, observamos que la media (434 millones) es mayor que la mediana (330 millones), lo cual indica una asimetría hacia la derecha. Esto puede explicarse porque la mayoría de los inmuebles de la compañía B&C son de estratos cinco y cuatro, que tienen una mayor facilidad económica, lo que les permite ofrecer precios más altos. Nuevamente, se sugiere considerar invertir en estratos más bajos, ya que, a pesar de tener precios más bajos, una mayor oferta puede generar mayores utilidades.
+
+Aunque parece haber una relación lineal entre el área construida y el precio, se observan algunos inmuebles con muy poca área y muy costosos, así como otros con mucha área y muy baratos. Se sugiere verificar estos inmuebles en la base de datos, ya que podrían ser datos atípicos o requerir un ajuste a un valor más adecuado. Es importante tener en cuenta que estos datos son solo estadísticos, y el valor del inmueble dependerá de otros factores como la valorización, ubicación, estrato y facilidades de acceso, entre otros.
+
+También se notó que aunque existe una relación entre el precio y el número de habitaciones en la mayoría de los inmuebles, algunos inmuebles costaban más a pesar de tener menos habitaciones (por ejemplo, los inmuebles con 5 habitaciones versus los de 9 habitaciones). Esto debe considerarse para construcciones futuras, ya que el hecho de que algunos inmuebles tengan pocas habitaciones pero sean muy costosos puede hacer que los clientes prefieran otras inmobiliarias.
+
+En el análisis de las características por zonas, tipo de inmuebles y estratos, encontramos diferentes datos para cada comparación descritos en la sección de resultados. Sería interesante poder analizar los datos no solo de las viviendas sino también de los clientes para identificar por qué ocurre esto. Con una mejora en la caracterización de los clientes, la compañía podrá ofrecer en construcciones futuras inmuebles adaptados a las necesidades de los usuarios por zona, tipo y estrato.
+
+
+## Conclusión ##
+En conclusión, este análisis de la base de datos de la compañía inmobiliaria B&C destaca la alta concentración de inmuebles en la zona sur de Cali y la gran cantidad de inmuebles tipo apartamentos. Se recomienda considerar oportunidades de inversión en estratos más bajos y adaptar algunos apartamentos para atraer a un segmento interesado en viviendas con características similares a las de casas. Asimismo, se sugiere realizar un análisis más detallado de las viviendas con las características de los clientes para ajustar estrategias de comercialización y mejorar el enfoque en el mercado inmobiliario.
+
+
+## Anexos (Referencias) ##
+[1]	El País, “El Sur de Cali continúa proyectándose como el sector de mayor de crecimiento,” 2017. https://www.elpais.com.co/contenido/el-sur-de-cali-continua-proyectandose-como-el-sector-de-mayor-de-crecimiento.html#
+
+[2]	N. Cigüenza, “La mayoría de los colombianos todavía prefieren vivir en casas que en apartamentos”, [Online]. Available: https://www.larepublica.co/economia/la-mayoria-de-los-colombianos-todavia-prefieren-vivir-en-casas-que-en-apartamentos-2903583
+
+[3]	D. Santiago, “Cifras de Kantar indicaron que la población estrato 1 en Colombia corresponde al 21%.” https://www.larepublica.co/empresas/kantar-da-a-conocer-cifras-relevantes-en-el-marco-del-dia-mundial-del-consumidor-3322740#:~:text=El%20estudio%20Consumer%20Insights%20Q4,y%2011%25%20al%20estrato%204.
+
+
+
+
+
+
